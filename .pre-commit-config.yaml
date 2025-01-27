@@ -1,0 +1,30 @@
+repos:
+-   repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.1.8
+    hooks:
+    -   id: ruff
+        args: [--fix]
+    -   id: ruff-format
+
+-   repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.7.0
+    hooks:
+    -   id: mypy
+        additional_dependencies: []
+
+-   repo: local
+    hooks:
+    -   id: radon
+        name: radon - complexity check
+        entry: poetry run radon cc
+        args: [--min, B, src]
+        language: system
+        types: [python]
+        pass_filenames: true
+
+    -   id: pytest
+        name: pytest
+        entry: poetry run pytest
+        language: system
+        pass_filenames: false
+        always_run: true
