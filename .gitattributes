@@ -1,0 +1,17 @@
+# Mark documentation files as documentation
+docs/* linguist-documentation
+site/* linguist-documentation
+*.html linguist-documentation
+*.md linguist-documentation
+
+# Mark Python files as Python
+*.py linguist-language=Python
+*.pyi linguist-language=Python
+
+# Exclude vendored code
+**/vendor/** linguist-vendored
+**/node_modules/** linguist-vendored
+
+# Explicitly mark the main language
+* linguist-detectable=false
+*.py linguist-detectable=true

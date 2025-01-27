@@ -1,0 +1,50 @@
+name: Branch Check
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+  workflow_call:
+
+jobs:
+  check-commits:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Check commit count
+        run: |
+          COMMIT_COUNT=$(git rev-list --count origin/${{ github.base_ref }}..${{ github.event.pull_request.head.sha }})
+          if [ "$COMMIT_COUNT" -gt 2 ]; then
+            echo "Error: Pull request has more than 2 commits. Please rebase and squash commits."
+            exit 1
+          fi
+
+      - name: Check if branch is rebased
+        run: |
+          git fetch origin ${{ github.base_ref }}
+          MERGE_BASE=$(git merge-base origin/${{ github.base_ref }} ${{ github.event.pull_request.head.sha }})
+          HEAD_BASE=$(git rev-parse origin/${{ github.base_ref }})
+          if [ "$MERGE_BASE" != "$HEAD_BASE" ]; then
+            echo "Error: Branch is not rebased on latest ${{ github.base_ref }}. Please rebase your branch."
+            exit 1
+          fi
+
+      - name: Check branch naming convention
+        run: |
+          BRANCH_NAME=${{ github.head_ref }}
+          if ! [[ $BRANCH_NAME =~ ^issues/[0-9]+-[a-zA-Z0-9-]+$ ]]; then
+            echo "Error: Branch name does not follow the convention 'issues/NUMBER-DESCRIPTION'"
+            echo "Example: issues/123-fix-pipeline-error"
+            exit 1
+          fi
+
+      - name: Check commit message format
+        run: |
+          COMMIT_MSG=$(git log -1 --pretty=%B)
+          if ! [[ $COMMIT_MSG =~ ^Issue-[0-9]+:\ .+ ]]; then
+            echo "Error: Last commit message does not follow the format 'Issue-NUMBER: Description'"
+            echo "Example: Issue-123: Fixed pipeline error handling"
+            exit 1
+          fi

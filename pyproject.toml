@@ -1,0 +1,175 @@
+[tool.poetry]
+name = "rivusio"
+version = "0.2.0"
+description = "A type-safe, async-first data processing pipeline framework"
+authors = ["Zbigniew Mastylo <zmastylo@gmail.com>"]
+readme = "README.md"
+packages = [{include = "rivusio", from = "src"}]
+license = "MIT"
+homepage = "https://github.com/zbytealchemy/rivusio"
+repository = "https://github.com/zbytealchemy/rivusio"
+documentation = "https://zbytealchemy.github.io/rivusio"
+keywords = [
+    "pipeline",
+    "data processing",
+    "async",
+    "sync",
+    "type-safe",
+    "streaming",
+    "etl",
+    "data engineering",
+    "fast",
+    "parallel execution"
+]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pydantic = "^2.5.1"
+python-multipart = "^0.0.20"
+"ruamel.yaml" = { version = "^0.18.5", extras = ["py.typed"] }
+rich = "^13.7.0"
+click = "^8.0.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.3"
+pytest-asyncio = "^0.21.1"
+pytest-cov = "^4.1.0"
+pytest-mock = "^3.12.0"
+mypy = "^1.7.1"
+ruff = "^0.1.6"
+ipykernel = "^6.29.5"
+
+[tool.poetry.group.docs]
+optional = true
+
+[tool.poetry.group.docs.dependencies]
+mkdocs = "1.5.3"
+mkdocs-material = "9.5.3"
+mkdocstrings = {extras = ["python"], version = "0.23.0"}
+mkdocs-mermaid2-plugin = "1.2.1"
+pymdown-extensions = "^10.2"
+mkdocs-autorefs = "0.5.0"
+pygments = "2.17.2"
+griffe = "0.38.1"
+black = "^23.12.1"  # Added for mkdocstrings signature formatting
+mkdocstrings-python = "1.7.5"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-v --cov=rivusio --cov-report=term-missing"
+markers = [
+    "integration: marks tests that require external services",
+]
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+check_untyped_defs = true
+disallow_incomplete_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+show_error_codes = true  # This will show error codes in mypy output
+mypy_path = "src"
+namespace_packages = true
+explicit_package_bases = true
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+select = ["ALL"]
+ignore = [
+    "W191",    # Ignore indentation contains tabs warning
+    "D206",    # Ignore docstring should be indented with spaces warning
+    "ANN101",  # Missing type annotation for self in method
+    "DTZ005",  # Allow timezone-naive datetime usage
+    "BLE001",  # Allow catching bare Exception in stream processing
+    "UP007",   # Allow Union[] syntax temporarily while we migrate to X | Y syntax
+    "PERF203", # Allow try-except in loops for retry mechanisms
+    "EM102",   # Allow f-strings in exception messages
+    "EM101",   # Allow string literals in exceptions
+    "TRY003",  # Allow long messages outside exception class
+    "PGH003",  # Allow generic type: ignore comments
+    "ANN102",  # Missing type annotation for cls in classmethod
+    "SLF001",  # Allow private member access
+    "PLC0105", # Ignore overly pedantic TypeVar naming convention
+    "TRY301",  # Ignore suggestion to abstract raise statements
+    "TRY300",  # Ignore suggestion to move return to else block
+    "ARG001",  # Allow unused function arguments
+    "S301",    # Allow pickle usage (we trust our own data)
+    "ANN401",  # Allow Any in type hints where necessary
+    "D203",    # Ignore one-blank-line-before-class in favor of D211
+    "D213",    # Ignore multi-line-summary-second-line in favor of D212
+    "D407",    # Ignore missing dashed underline after section
+    "D413",    # Ignore missing blank line after last section
+]
+
+[tool.ruff.per-file-ignores]
+"examples/*.py" = ["T201"]  # Allow print statements in example files
+"tests/*" = [
+    "S101",    # Allow assert in tests
+    "ANN401",  # Allow Any in type hints in tests
+    "UP007",   # Allow Union[] syntax temporarily while we migrate to X | Y syntax
+    "PLR2004", # Allow magic numbers in tests
+    "PT018",   # Allow complex assertions in tests
+    "ANN101",  # Allow missing self type annotation
+    "PERF402", # Allow slice notation for list copying in tests
+    "D103",    # Allow missing docstrings in test functions
+    "TRY003",  # Allow long messages in exceptions for tests
+    "EM101",   # Allow string literals in exceptions for tests
+    "SLF001",  # Allow private member access in tests
+    "D101",    # Allow missing docstrings in public classes in tests
+    "D102",    # Allow missing docstrings in public methods in tests
+    "ARG002",  # Allow unused method arguments in tests
+    "D107",    # Allow missing docstrings in __init__ in tests
+    "D100",    # Allow missing module docstrings in tests
+    "D104",    # Allow missing docstring in public package
+    "PGH003",  # Allow generic type: ignore comments
+    "DTZ005",  # Allow timezone-naive datetime usage in tests
+    "PERF401", # Allow not using list comprehension in tests
+    "PGH003",  # Allow generic type: ignore comments
+    "PT011",   # Allow broad pytest.raises without match parameter
+    "PT012",   # Allow multiple statements in pytest.raises blocks
+]
+"src/rivusio/testing/*" = [
+    "S101",    # Allow assert in testing utilities
+    "UP007",   # Allow Union[] syntax temporarily while we migrate to X | Y syntax
+    "ANN401",  # Allow Any in type hints in testing utilities
+]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "tab"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+
+[tool.ruff.isort]
+known-first-party = ["rivusio"]
+combine-as-imports = true
+
+[tool.coverage.run]
+source = ["src"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if self.debug:",
+    "raise NotImplementedError",
+]
+
+omit = [
+    "src/rivusio/testing/*",
+    "src/rivusio/cli/*",  # Exclude CLI module from coverage
+]

@@ -1,0 +1,152 @@
+site_name: Rivusio
+site_description: A type-safe, async-first data processing pipeline framework
+site_author: Zbigniew Mastylo
+repo_url: https://github.com/zbytealchemy/rivusio
+repo_name: zbytealchemy/rivusio
+
+
+theme: 
+  name: material
+  features:
+    - navigation.sections       # Enable collapsible navigation
+    - navigation.indexes        # Keep sections collapsed by default
+    - navigation.tabs           # Enable navigation tabs for education
+
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          import:
+            - https://docs.python.org/3/objects.inv
+          paths: [src]
+          options:
+            show_source: true
+            show_root_heading: true
+            docstring_style: google
+            docstring_section_style: spacy
+            show_signature_annotations: true
+            separate_signature: true
+            show_bases: true
+            show_submodules: true
+            docstring_options:
+              markdown_formatting: True
+              docstring_section_style: spacy
+            rendering:
+              show_root_heading: true
+              show_if_no_docstring: true
+              heading_level: 3
+              members_order: source
+              show_category_heading: true
+              show_root_full_path: true
+              show_root_members_full_path: true
+              show_object_full_path: true
+              show_root_toc_entry: true
+              show_source: true
+              docstring_style: google
+              docstring_section_style: spacy
+              show_signature_annotations: true
+              separate_signature: true
+              show_bases: true
+              show_submodules: true
+              preload_modules: true
+              inherited_members: true
+              filters: ["!^_"]
+              merge_init_into_class: true
+              docstring_parser_options:
+                replace_admonitions: true
+              experimental_html_docstring: true
+
+  - mermaid2:
+      version: 10.6.1
+      javascript: https://unpkg.com/mermaid@10.6.1/dist/mermaid.min.js
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.details
+  - pymdownx.tabbed
+  - pymdownx.tasklist
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - admonition
+  - tables
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: true
+
+nav:
+  - Home: index.md
+  - Getting Started:
+    - Installation: getting-started/installation.md
+    - Quick Start: getting-started/quickstart.md
+    - Basic Concepts: getting-started/concepts.md
+    - Architecture:
+      - Overview: getting-started/architecture-overview.md
+      - Diagrams: getting-started/architecture-diagrams.md
+  - User Guide:
+    - Pipes: user-guide/pipes.md
+    - Pipelines: user-guide/pipelines.md
+    - Streams: user-guide/streams.md
+    - Monitoring: user-guide/monitoring.md
+    - Plugins: user-guide/plugins.md
+    - Configuration: user-guide/configuration.md
+    - Error Handling: user-guide/error-handling.md
+    - Stream Processing: user-guide/stream-processing.md
+    - Troubleshooting: user-guide/troubleshooting.md
+    - Performance:
+        - Benchmarking: user-guide/benchmarking.md
+        - Performance Tuning: user-guide/performance-tuning.md
+  - Maintainer Guide:
+    - Overview: maintainer/overview.md
+    - Release Process: maintainer/release-process.md
+    - Documentation: maintainer/documentation.md
+    - Code Review: maintainer/code-review.md
+  - Development:
+      - Overview: development/overview.md
+      - Testing Guide: development/testing.md
+  - API Reference:
+    - Async I/O: api/aio.md
+    - Configuration: api/config.md
+    - Core: api/core.md
+    - Monitoring: api/monitoring.md
+    - Plugins: api/plugins.md
+    - Sync: api/sync.md
+  - Examples:
+      - Basic Transformation: examples/basic-transformation.md
+      - Pipeline Composition: examples/pipeline-composition.md
+      - Lambda Composition: examples/lambda-composition.md
+      - Basic Pipeline: examples/basic-pipeline.md
+      - Sync Pipeline: examples/sync-pipeline.md
+      - Advanced Patterns: examples/advanced-patterns.md
+      - Batch Processing: examples/batch-processing.md
+      - Configuration: examples/configuration.md
+      - External Services: examples/external-services.md
+      - Stream Processing: examples/stream-processing.md
+  - Contributing: 
+      - How to Contribute: contributing.md
+  - Changelog: 
+      - Release Notes: changelog.md
+
