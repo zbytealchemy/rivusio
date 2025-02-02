@@ -4,7 +4,7 @@ from datetime import timedelta
 import pytest
 from pydantic import ValidationError
 
-from rivusio.config.stream import StreamConfig
+from rivusio import StreamConfig
 
 
 def test_stream_config_defaults() -> None:

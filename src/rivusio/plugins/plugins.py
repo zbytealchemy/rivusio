@@ -1,4 +1,5 @@
 """Plugin system for rivusio."""
+
 from collections.abc import Callable
 from typing import Optional, TypeVar, Union, cast
 

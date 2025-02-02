@@ -1,8 +1,7 @@
 
 import pytest
 
-from rivusio import ExecutionStrategy, SyncBasePipe, SyncPipeline
-from rivusio.core.exceptions import PipelineError
+from rivusio import ExecutionStrategy, PipelineError, SyncBasePipe, SyncPipeline
 
 
 class MockSyncPipe(SyncBasePipe[int, int]):

@@ -1,4 +1,5 @@
 """Type definitions for Rivusio."""
+
 from collections.abc import Sequence
 from typing import Any, TypeVar, Union
 

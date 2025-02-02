@@ -4,7 +4,6 @@ This module defines the base exception hierarchy used throughout the framework
 for error handling and reporting.
 """
 
-
 class PipeError(Exception):
     """Exception raised when an error occurs within a single pipe.
 

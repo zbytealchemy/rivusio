@@ -4,7 +4,7 @@ from typing import Any, Optional
 import pytest
 from pydantic import BaseModel, Field, ValidationError
 
-from rivusio.config import PipeConfig
+from rivusio import PipeConfig
 
 
 def test_base_pipe_config_defaults() -> None:

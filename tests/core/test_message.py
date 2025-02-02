@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import Any
 
-from rivusio.core.message import Message
+from rivusio import Message
 
 
 def test_message_creation() -> None:

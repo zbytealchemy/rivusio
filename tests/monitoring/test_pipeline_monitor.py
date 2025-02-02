@@ -5,7 +5,7 @@ from time import sleep
 
 import pytest
 
-from rivusio.monitoring.pipeline_monitor import PipelineMonitor
+from rivusio import PipelineMonitor
 
 
 def test_pipeline_monitor_initialization() -> None:

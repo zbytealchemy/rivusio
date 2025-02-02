@@ -7,10 +7,12 @@ from typing import Any, Union
 
 import pytest
 
-from rivusio.config.stream import StreamConfig
-from rivusio.core.exceptions import PipeError
-from rivusio.sync.pipeline import SyncBasePipe
-from rivusio.sync.stream import SyncStream
+from rivusio import (
+    PipeError,
+    StreamConfig,
+    SyncBasePipe,
+    SyncStream,
+)
 
 
 def test_sync_stream_batch_processing() -> None:

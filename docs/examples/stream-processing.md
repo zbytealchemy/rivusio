@@ -72,11 +72,12 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-This example demonstrates:
+## Explanation
+
 1. Creating a custom data source that generates an async stream
 2. Enriching data in real-time
 3. Batch aggregation with windowing
 4. Stream configuration with window and batch sizes
 5. Pipeline composition for stream processing
 6. Resource management with async context managers
-```
+

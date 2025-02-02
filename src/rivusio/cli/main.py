@@ -1,4 +1,5 @@
 """Command line interface for rivusio."""
+
 import asyncio
 import json
 from collections.abc import AsyncGenerator

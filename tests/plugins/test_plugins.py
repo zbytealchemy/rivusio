@@ -3,9 +3,10 @@ from typing import Any
 
 import pytest
 
-from rivusio import AsyncBasePipe, SyncBasePipe
-from rivusio.plugins.plugins import (
+from rivusio import (
+    AsyncBasePipe,
     PluginRegistry,
+    SyncBasePipe,
     register_async_sink,
     register_async_source,
     register_sync_sink,

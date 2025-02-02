@@ -1,8 +1,7 @@
 """Tests for executor configuration."""
 import multiprocessing
 
-from rivusio.config.executor import ParallelConfig
-from rivusio.core.execution_strategy import ExecutionStrategy
+from rivusio import ExecutionStrategy, ParallelConfig
 
 
 def test_parallel_config_defaults() -> None:

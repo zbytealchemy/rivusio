@@ -12,7 +12,6 @@ from datetime import datetime
 
 class BatchProcessor(AsyncBasePipe[List[Dict[str, Any]], List[Dict[str, Any]]]):
     async def process(self, batch: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-        # Process each item in the batch
         processed = []
         for item in batch:
             item["processed"] = True
@@ -22,7 +21,6 @@ class BatchProcessor(AsyncBasePipe[List[Dict[str, Any]], List[Dict[str, Any]]]):
 
 class BatchValidator(AsyncBasePipe[List[Dict[str, Any]], List[Dict[str, Any]]]):
     async def process(self, batch: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-        # Validate batch items
         return [item for item in batch if self._is_valid(item)]
     
     def _is_valid(self, item: Dict[str, Any]) -> bool:
@@ -30,7 +28,6 @@ class BatchValidator(AsyncBasePipe[List[Dict[str, Any]], List[Dict[str, Any]]]):
         return all(field in item for field in required_fields)
 
 async def main():
-    # Create pipeline
     pipeline = AsyncPipeline([
         BatchValidator(),
         BatchProcessor()
@@ -52,7 +49,7 @@ async def main():
         ],
         [
             {"id": 4, "value": "d"},
-            {"value": "invalid"},  # Will be filtered out
+            {"value": "invalid"},
             {"id": 6, "value": "f"}
         ]
     ]
@@ -70,9 +67,9 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-This example shows:
+## Explanation
+
 1. Batch validation using `BatchValidator`
 2. Batch processing using `BatchProcessor`
 3. Parallel execution configuration
 4. Processing multiple batches concurrently
-

@@ -1,4 +1,5 @@
 """Stream configuration."""
+
 from datetime import timedelta
 from typing import Optional
 

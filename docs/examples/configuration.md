@@ -69,7 +69,8 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-This example demonstrates:
+## Explanation
+
 1. Creating configuration classes using `PipeConfig`
 2. Validating configuration using Pydantic fields
 3. Using multiple configurations in a single pipe

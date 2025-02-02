@@ -1,4 +1,5 @@
 """Synchronous stream processing implementation."""
+
 import logging
 import time
 import types

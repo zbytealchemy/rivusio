@@ -1,5 +1,6 @@
 
 """Sync parallel execution implementations."""
+
 import types
 from collections.abc import Callable
 from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
