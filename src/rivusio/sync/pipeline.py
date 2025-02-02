@@ -1,4 +1,5 @@
 """Sync pipeline implementations for composing pipes."""
+
 import types
 from abc import abstractmethod
 from collections.abc import Callable

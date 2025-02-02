@@ -6,10 +6,12 @@ from typing import Any
 
 import pytest
 
-from rivusio.aio.pipeline import AsyncBasePipe
-from rivusio.aio.stream import AsyncStream
-from rivusio.config.stream import StreamConfig
-from rivusio.core.exceptions import PipeError
+from rivusio import (
+    AsyncBasePipe,
+    AsyncStream,
+    PipeError,
+    StreamConfig,
+)
 
 
 async def async_iter(items: list[Any]) -> AsyncIterator[Any]:

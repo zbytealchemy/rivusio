@@ -5,6 +5,7 @@ performance indicators over configurable time windows. It supports collecting,
 aggregating, and analyzing metrics such as processing times, error rates,
 and throughput.
 """
+
 from datetime import datetime, timedelta
 from typing import Optional
 

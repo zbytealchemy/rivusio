@@ -1,4 +1,5 @@
 """Execution strategy definitions."""
+
 from enum import Enum
 
 

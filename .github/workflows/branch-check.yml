@@ -34,17 +34,14 @@ jobs:
       - name: Check branch naming convention
         run: |
           BRANCH_NAME=${{ github.head_ref }}
-          if ! [[ $BRANCH_NAME =~ ^issues/[0-9]+-[a-zA-Z0-9-]+$ ]]; then
+          if [[ $BRANCH_NAME =~ ^release/ ]]; then
+            if ! [[ $BRANCH_NAME =~ ^release/[0-9]+-[a-zA-Z0-9-]+$ ]]; then
+              echo "Error: Release branch name does not follow the convention 'release/NUMBER-DESCRIPTION'"
+              echo "Example: release/1-release-0-2-0"
+              exit 1
+            fi
+          elif ! [[ $BRANCH_NAME =~ ^issues/[0-9]+-[a-zA-Z0-9-]+$ ]]; then
             echo "Error: Branch name does not follow the convention 'issues/NUMBER-DESCRIPTION'"
             echo "Example: issues/123-fix-pipeline-error"
-            exit 1
-          fi
-
-      - name: Check commit message format
-        run: |
-          COMMIT_MSG=$(git log -1 --pretty=%B)
-          if ! [[ $COMMIT_MSG =~ ^Issue-[0-9]+:\ .+ ]]; then
-            echo "Error: Last commit message does not follow the format 'Issue-NUMBER: Description'"
-            echo "Example: Issue-123: Fixed pipeline error handling"
             exit 1
           fi

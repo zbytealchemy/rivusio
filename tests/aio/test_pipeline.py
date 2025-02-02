@@ -3,9 +3,12 @@ from typing import Optional
 
 import pytest
 
-from rivusio import ExecutionStrategy
-from rivusio.aio.pipeline import AsyncBasePipe, AsyncPipeline
-from rivusio.core.exceptions import PipelineError
+from rivusio import (
+    AsyncBasePipe,
+    AsyncPipeline,
+    ExecutionStrategy,
+    PipelineError,
+)
 
 
 class AsyncMultiplyByTwo(AsyncBasePipe[int, int]):

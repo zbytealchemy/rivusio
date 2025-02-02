@@ -1,4 +1,5 @@
 """Asynchronous stream processing implementation."""
+
 import asyncio
 import logging
 from collections.abc import AsyncIterator

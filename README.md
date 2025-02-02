@@ -23,6 +23,8 @@ A blazing-fast, type-safe data processing pipeline framework in Python, designed
 - **Monitoring**: Built-in metrics collection and monitoring
 - **Configuration**: Type-safe configuration using Pydantic
 - **Extensible**: Plugin system for custom components
+- **Composable**: Easy pipeline composition with the `>>` operator
+- **Comprehensive Documentation**: Extensive guides and examples
 
 ## 🛠️ Installation
 

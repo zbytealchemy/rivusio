@@ -1,4 +1,5 @@
 """Metrics collection functionality for pipelines."""
+
 from typing import Any, cast
 
 

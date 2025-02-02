@@ -1,8 +1,12 @@
 import time
 from datetime import datetime, timedelta
 
-from rivusio.core.metrics import PipelineMetricsMixin
-from rivusio.monitoring.metrics import MetricsCollector, MetricValue, MetricWindow
+from rivusio import (
+    MetricsCollector,
+    MetricValue,
+    MetricWindow,
+    PipelineMetricsMixin,
+)
 
 
 def test_metric_value() -> None:

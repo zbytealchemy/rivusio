@@ -337,3 +337,12 @@ async def main():
     metrics = pipeline.monitor.get_metrics()
     print(f"Total time: {metrics['total_time']:.2f}")
 ```
+
+## Explanation
+
+1. Data preprocessing using `DataPreprocessor`
+2. Feature extraction from preprocessed data
+3. Model prediction using a simple average function
+4. Parallel processing using PROCESS_POOL strategy
+5. Monitoring pipeline performance
+6. Resource management with async context managers

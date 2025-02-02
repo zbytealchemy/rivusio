@@ -1,4 +1,5 @@
 """Base classes and interfaces for Rivusio pipelines."""
+
 from abc import ABC
 from typing import Generic, Optional
 

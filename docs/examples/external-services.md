@@ -95,9 +95,9 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-This example demonstrates:
+## Explanation
+
 1. Integration with external HTTP APIs
 2. Redis caching layer
 3. Proper resource management with setup/cleanup
 4. Configuration management for external services
-```
